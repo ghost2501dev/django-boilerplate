@@ -1,0 +1,44 @@
+{% load static i18n hijack_tags sekizai_tags common %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_settings "LOAD_EXTERNAL_REFS" as LOAD_EXTERNAL_REFS %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}{% endblock %}</title>
+
+  {% comment %}
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static "img/favicon/apple-touch-icon.png" %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static "img/favicon/favicon-32x32.png" %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static "img/favicon/favicon-16x16.png" %}">
+  <meta name="theme-color" content="#ffffff">
+  {% endcomment %}
+
+  {% comment %}
+  Put third party links here, external and local
+  {% if LOAD_EXTERNAL_REFS %}
+  {% else %}
+  {% endif %}
+  {% endcomment %}
+
+  <link href="{% static "hijack/hijack-styles.css" %}" rel="stylesheet">
+  {% render_block "css" %}
+</head>
+<body id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %}">
+  {% hijack_notification %}
+
+  {% block layout %}{% endblock %}
+
+  {% comment %}
+  Put third party js here, external and local
+  {% if LOAD_EXTERNAL_REFS %}
+  {% else %}
+  {% endif %}
+  {% endcomment %}
+
+  {% render_block "js" %}
+</body>
+</html>
