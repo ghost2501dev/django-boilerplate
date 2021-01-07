@@ -64,12 +64,22 @@ If you want to compile messages, use the compilemessages command:
 Requirements
 ============
 
-We use constraints:
+We use constraints.
+
+Add dependencies to requirements.txt:
+
+   .. code-block:: text
+      # requirements.txt
+      Django
+      anotherdependency
+
+Then run:
 
    .. code-block:: bash
 
-      $ pip install <package>
+      $ pip install -r requirements.txt
       $ pip freeze > constraints.txt
+
 
 Tests
 =====
